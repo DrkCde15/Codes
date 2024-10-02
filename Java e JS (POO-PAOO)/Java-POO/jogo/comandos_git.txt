@@ -1,0 +1,186 @@
+git clone                                           
+    Clona repositório da web
+
+git add README.md                                   
+    Adiciona README.md para o commit
+
+git config --local user.name "João Vitor dos Santos"
+    Muda o nome nas configurações locais do repositório
+
+git config --local user.email vitor40joao@gmail.com               
+    Muda o email nas configurações locais do repositório
+
+git remote remove origin                            
+    Remove a referência antiga da origem nas configurações do repositório
+
+git remote add origin 
+    Adiciona o token referente ao repositório da atividade
+
+git config --local code.editor "code --wait"
+    Ordena o vscode a aguardar pela mensagem de commit
+
+git commit 
+    realiza o commit da criação do README.md
+
+git add comandos_git.txt
+    adiciona o arquivo de comandos para o commit
+
+git commit 
+    Realiza o commit docs(p1):cria arquivo para comandos git
+
+git add Personagem.java
+    adicionou as mudanças do Personagem para o commit
+
+git commit
+    realizou o commit "feat(p1): inclui nome ao construtor do personagem" das mudanças do Personagem
+
+git add Jogo.java
+    adicionou um arquivo de teste para os personagens
+
+git commit
+    realizou o commit "test(p1): testa personagens criados"
+
+git log
+    realiza a leitura do histórico dos  commits 
+
+git add Personagem.java
+    adicionou o metódo "morreu" para o Personagem
+
+git commit
+    realizou o commit "feat(p1): viabiliza morte do personagem"
+
+git tag v1.0.0 414caa2f2ab7 -m "jogo: torna a morte do personagem real"
+    atribui uma tag para o commit endereçado, tornando ele numa release
+
+git add . 
+    adicionou todos os arquivos modificados para o próximo commit
+
+git commit
+    realizou o commmit "feat(p1): implementa armazenamento de itens"
+
+git add . 
+    adicionou todos os arquivos modificados para o próximo commit
+
+git commit 
+    realizou o commit "fix(p1): move vetor itensPossiveis para Personagem"
+
+git remote remove origin
+    remove origem pois o token foi perdido
+
+git remote add origin
+    adiciona uma nova origem, com um token novo
+
+git push origin main
+    envia os commits realizados na branch main para o repositório localizado em origin
+
+git add .
+    adiciona todos os arquivos modificados para o próximo commit
+
+git commit 
+    efetua o commit "feat(p1): possibilita print de itens do personagem"
+
+git add ./VetorDinamico.java
+    adiciona o arquivo VetorDinamico.java ao commit
+
+git commit
+    efetua o commit "fix(p1): corrige o vetor obtido em getElementos", onde os espaços em branco no vetor eram obtidos também 
+
+git add Jogo.java
+    adiciona o arquivo Jogo.java ao commit
+
+git commit
+    efetua o commit "fix(p1): arruma valor obtido na variavel oQueFazer", onde os valores obtidos iam de 0 a 1, e não de 0 a 2
+
+git add .
+    adiciona todos os arquivos modificados ao commit
+
+git commit
+    efetua o commit "feat(p1): condiciona refeicao a existencia de itens"
+
+git add Personagem.java
+    adiciona o arquivo Personagem.java ao commit
+
+git commit
+    efetua o commit "fix(p1): arruma prints de acoes do personagem"
+
+git add Jogo.java
+    adiciona o arquivo Jogo.java ao commit
+
+clear 
+    limpa a tela do prompt 
+
+git add Jogo.java
+    adiciona o arquivo Jogo.java ao commit
+
+git commit
+    efetua o commmit "fix(p1): condiciona jogo a vida dos dois personagens"
+
+git push origin main
+    envia os commits realizados na branch main para o repositório localizado em origin
+
+git add Jogo.java
+    adiciona o arquivo Jogo.java ao commit
+
+git commit
+    efetua o commit "fix(p1): faz texto de morte ser emitido somente uma vez por personagem"
+
+git add Personagem.java
+    adiciona o arquivo Personagem.java ao commit
+
+git commit 
+    efetua o commmit "fix(p1): retira acentos de textox do arquivo Personagem"
+
+git reset --hard f8a25725644e40
+    retira as modificações aplicadas no commit anterior, devido a erro de gramatica na mensagem
+
+
+git add .
+    adiciona todos os arquivos modificados ao commit
+
+git commit 
+    efetua o commmit "fix(p1): retira acentos de textos do arquivo Personagem"
+
+git add .
+    adiciona todos os arquivos modificados ao commit
+
+git commit
+    efetua o commit "feat(p1): implementa batalha entre personagens"
+
+git tag v2.0.0  5c40f67e5af420d -m "jogo: implementa sobrevivencia heroica mas, no final, todos morrem"
+    atribui uma tag para o commit referênciado, com uma mensagem, sinalizando uma release.
+
+git add comandos_git.txt
+    adiciona este arquivo ao commit
+
+git commit
+    efetua o commit "docs(p1): finaliza alteracoes no arquivo de comandos"
+
+git add comandos_git.txt
+    adiciona este arquivo ao commit
+
+git commit
+    efetua o commit "fix(p1): adiciona ultimo push para o arquvivo de comandos"
+
+git push origin main --tags
+    envia os commits realizados na branch main para o repositório localizado em origin com as tags
+
+git commit -a -m "fix(p1): arruma funcao removerNoFinal no VetorDinamico"
+    realiza o commit das mudanças especificadas
+
+git commit -a -m "fix(p1): arruma removerNoFinal novamente no VetorDinamico"
+    realiza o commit das mudanças especificadas
+
+git add .
+    adiciona todos os códigos modificados ao commit
+
+git commit -a -m "fix(p1): arruma reajuste de capacidade ao remover no final"
+    realiza o commit das mudanças especificadas
+
+git push origin main
+    envia os commits realizados na branch main para o repositório localizado em origin
+
+git commit -a -m "feat(p1): adiciona um contador de dias ao jogo"
+    realiza o commit das mudanças especificadas
+
+git push origin main
+    envia os commits realizados na branch main para o repositório localizado em origin

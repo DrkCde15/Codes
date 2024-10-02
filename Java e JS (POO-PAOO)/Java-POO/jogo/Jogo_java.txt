@@ -1,0 +1,370 @@
+Jogo.java
+
+import java.util.Random;
+
+public class Jogo {
+    public static void main(String[] args) throws Exception {
+        // Cria um objeto Random para gerar números aleatórios
+        var gerador = new Random();
+        // Cria dois personagens com atributos específicos
+        var p1 = new Personagem("Cristiano Ronaldo", 10, 9, 0);
+        var p2 = new Personagem("Lionel Messi", 8, 5, 5);
+        int oQueFazer; // Variável para determinar a ação a ser realizada
+        int contDias = 0; // Contador de dias
+        String campeao = new String(); // Variável para armazenar o nome do campeão
+        
+        // Enquanto pelo menos um personagem estiver vivo
+        while(!p1.morreu() || !p2.morreu()){
+            contDias++; // Incrementa o contador de dias
+            System.out.println("\nDia atual: " + contDias + "\n"); // Exibe o dia atual
+            
+            // Sorteia qual personagem irá atacar
+            oQueFazer = gerador.nextInt(2);
+            if(!p1.morreu() && !p2.morreu()){
+                if(oQueFazer == 0)
+                    p1.atacar(p2);
+                else
+                    p2.atacar(p1);
+            }
+
+            // Se o personagem p1 estiver vivo
+            if(!p1.morreu()){
+                // Sorteia a próxima ação do personagem p1
+                oQueFazer = gerador.nextInt(3);
+                switch(oQueFazer){
+                    case 0:
+                        p1.comer();
+                        break;
+                    case 1:
+                        p1.cacar();
+                        break;
+                    default:
+                        p1.dormir();
+                        break;
+                }
+                System.out.println(p1); // Exibe os atributos do personagem p1
+                System.out.printf("\n");
+            }
+            
+            // Se o personagem p2 estiver vivo
+            if(!p2.morreu()){
+                // Sorteia a próxima ação do personagem p2
+                oQueFazer = gerador.nextInt(3);
+                switch(oQueFazer){
+                    case 0:
+                        p2.comer();
+                        break;
+                    case 1:
+                        p2.cacar();
+                        break;
+                    default:
+                        p2.dormir();
+                        break;
+                }
+                System.out.println(p2); // Exibe os atributos do personagem p2
+            }
+
+            // Determina o campeão se ainda não houver um
+            if (campeao.isEmpty()){
+                // p1 se torna campeão se p2 morreu e p1 está vivo
+                if(p2.morreu() && !p1.morreu()){
+                    campeao = p1.nome;
+                    System.out.println("\n" + p2.nome + " morreu... " + campeao + " se tornou o campeao!\n");
+                }
+
+                // p2 se torna campeão se p1 morreu e p2 está vivo
+                if(p1.morreu() && !p2.morreu()){
+                    campeao = p2.nome;
+                    System.out.println("\n" + p1.nome + " morreu... " + campeao + " se tornou o campeao!\n");
+                }
+                // Empate se ambos morrerem
+                if(p1.morreu() && p2.morreu()){
+                    System.out.println("...Ocorreu um empate????");
+                }
+                
+            }
+
+            System.out.printf("\n\n-----------------------------\n\n");
+            Thread.sleep(3000); // Aguarda 3 segundos antes de continuar para simular o tempo
+        }
+        // Se houver um campeão e ambos os jogadores estiverem mortos, informa que o campeão morreu
+        if(!campeao.isEmpty())
+            System.out.printf("O campeao, %s, morreu.\n\nFim de jogo.",campeao);
+    }
+}
+
+
+
+
+Personagem.java
+
+import java.util.Random;
+
+public class Personagem {
+    // variáveis de instância(objeto)
+    String nome;
+    //encapsula energia
+    private int energia;
+    private int fome;
+    private int sono;
+    //coloca itens possiveis de se obter em um vetor
+    final String itensPossiveis [] = {"Javali selvagem", "amora", "batata frita", "onça", "bola de ouro"};
+    //cria um vetor dinamico para os itens do personagem!
+    VetorDinamico itens = new VetorDinamico();
+
+    // esse é o construtor padrão
+    // criado automaticamente pelo compilador, ainda que não seja escrito
+    // explicitamente
+    Personagem() {
+        nome = null;
+        energia = 10;
+        fome = 0;
+        sono = 0;
+
+        //ao chamar o metodo construtor da classe personagem, ela automaticamente, adiciona 4 itens ao inventario!
+        for(int i = 0; i < 4; i++){
+            adicionarItem();
+        }
+    }
+
+    // construtor personalizado
+    // o que viabiliza a sua existência é a sobrecarga de construtores
+    Personagem(String nome, int energia, int fome, int sono) {
+        this.nome = nome;
+        if (energia >= 0 && energia <= 10)
+            this.energia = energia;
+        if (fome >= 0 && fome <= 10)
+            this.fome = fome;
+        if (sono >= 0 && sono <= 10)
+            this.sono = sono;
+
+        for(int i = 0; i < 4; i++){
+            adicionarItem();
+        }
+    }
+
+    void adicionarItem() {
+        //adiciona um item aleatorio do vetor dos itens possiveis para o inventario
+        var gerador = new Random();
+        itens.adicionar(itensPossiveis[gerador.nextInt(5)]);
+    }
+
+    void cacar() {
+        if (energia >= 2) {
+            System.out.printf("%s esta cacando...\n", nome);
+            energia -= 2; // energia = energia - 2;
+            //adiciona 1 item ao inventario
+            adicionarItem();
+        } else {
+            System.out.printf("%s esta sem energia para cacar...\n", nome);
+        }
+        fome = Math.min(fome + 1, 10);
+        // resolver com o ternário
+        sono = sono < 10 ? sono + 1 : sono;
+    }
+
+    void comer() {
+        // se tiver fome
+        // comer e reduzir o valor de fome de 1
+        // aumentar o valor de energia de 1
+        // caso contrario
+        // so vai avisar que esta sem fome
+        switch (fome) {
+            case 0:
+                System.out.printf("%s esta sem fome....\n", nome);
+                break;
+            default:
+                //so pode comer se tiver itens no inventario
+                if(itens.estaVazio()){
+                    System.out.printf("%s nao pode comer, pois nao possui itens\n", nome);
+                }
+                else{
+                    //ao comer, o personagem perde um item de seu inventario!!!!
+                    System.out.printf("%s esta comendo...\n", nome);
+                    --fome;
+                    energia = (energia == 10 ? energia : energia + 1);
+                    itens.removerNoFinal();
+                }    
+        }
+    }
+
+    void dormir() {
+        if (sono >= 1) {
+            System.out.printf("%s esta dormindo...\n", nome);
+            sono -= 1;
+            energia = Math.min(energia + 1, 10);
+        } else {
+            System.out.printf("%s esta sem sono...\n", nome);
+        }
+    }
+
+    //retorna o valor de true se energia <= 0
+    Boolean morreu(){
+        if(energia<=0)return true;
+        return false;
+    }
+
+    void receberAtaque(){
+        energia--;
+    }
+
+    //recebe como parametros um objeto da classe Personagem
+    //ativa o metodo receberAtaque(), fazendo com que o inimigo perca 1 energia!!!!
+    void atacar(Personagem inimigo){
+        System.out.println("\n" + nome + " atacou " + inimigo.nome + "...\n");
+        inimigo.receberAtaque();
+    }
+
+    public String toString() {
+        var sb = new StringBuilder("");
+        sb.append(nome);
+        sb.append(": (e:").append(energia);
+        sb.append(", f:").append(fome);
+        sb.append(", s:").append(sono).append(")");
+        sb.append("\nItens: ");
+        //para cada item presente no vetor elementos do objeto itens
+        for(String item : itens.getElementos()){
+            //ele liga mais uma string ao stringbuilder, contendo o nome do item...
+            sb.append("|").append(item).append("|");
+        }
+        return sb.toString();
+        // return String.format(
+        //         "%s: (e:%d, f:%d, s:%d)",
+        //         nome, energia, fome, sono);
+    }
+
+}
+
+
+
+VetorDinâmico.java
+
+import java.util.Arrays;
+
+public class VetorDinamico {
+    // variáveis de instância (cada instância ou objeto tem a sua cópia)
+    private int qtde; // quantidade de elementos atualmente no vetor
+    private int cap; // capacidade máxima do vetor
+    private String [] elementos; // vetor que armazena os elementos
+    // variável de classe (todas as instâncias compartilham este mesmo valor)
+    private static final int CAP_MINIMA = 4; // capacidade mínima do vetor
+
+    // Construtor padrão que inicializa o vetor com capacidade mínima
+    VetorDinamico() {
+        cap = CAP_MINIMA;
+        qtde = 0;
+        elementos = new String [CAP_MINIMA];
+    }
+
+    // Construtor que inicializa o vetor com uma capacidade mínima especificada
+    VetorDinamico(int capMinima) {
+        // Define a capacidade inicial do vetor com base na capacidade mínima especificada
+        double aux = capMinima;
+        while (aux >= 2)
+            aux /= 2;
+        cap = aux == 1 && capMinima > 3 ? capMinima : CAP_MINIMA;
+    }
+
+    // Método para adicionar um elemento ao vetor
+    void adicionar(String elemento) {
+        // se o vetor estiver cheio, redimensiona antes de adicionar
+        if (estaCheio())
+            redimensionar();
+        elementos[qtde] = elemento;
+        qtde++;
+    }
+
+    // Método para verificar se o vetor está cheio
+    boolean estaCheio() {
+        // Retorna verdadeiro se a quantidade de elementos for igual à capacidade
+        return qtde == cap;
+    }
+
+    // Método para redimensionar o vetor dobrando sua capacidade
+    private void redimensionar() {
+        // Aloca um novo vetor com o dobro da capacidade atual
+        String [] aux = new String [cap * 2];
+        // Copia todos os elementos do vetor original para o novo vetor
+        for (int i = 0; i < cap; i++) {
+            aux[i] = elementos[i];
+        }
+        // Atualiza a capacidade para o novo valor dobrado
+        cap *= 2;
+        // Atualiza o vetor de elementos para apontar para o novo vetor
+        elementos = aux;
+    }
+
+    // Método para adicionar um elemento ao vetor sem repetição
+    void adicionarSemRepeticao(String e) {
+        // Verifica se o elemento já existe no vetor antes de adicionar
+        if (!existe(e))
+            adicionar(e);
+    }
+
+    // Método para verificar se um elemento já existe no vetor
+    boolean existe(String e) {
+        for (int i = 0; i < qtde; i++)
+            if (e == elementos[i])
+                return true;
+        return false;
+    }
+
+    // Método para obter o tamanho atual do vetor
+    int tamanho() {
+        return qtde;
+    }
+
+    // Método para remover o último elemento do vetor
+    void removerNoFinal() {
+        // Se o vetor não estiver vazio, remove o último elemento
+        if (!estaVazio()) {
+            qtde--;
+            // Se o vetor não estiver vazio e estiver um quarto cheio, reduz o tamanho
+            if (!estaVazio() && estaUmQuartoCheio()) {
+                reduzirTamanho();
+            }
+        }
+    }
+
+    // Método para verificar se o vetor está vazio
+    public boolean estaVazio() {
+        return qtde == 0;
+    }
+
+    // Método para verificar se o vetor está um quarto cheio
+    boolean estaUmQuartoCheio() {
+        return qtde == cap / 4;
+    }
+
+    // Método para reduzir pela metade a capacidade do vetor
+    void reduzirTamanho() {
+        // Reduz a capacidade pela metade e cria um novo vetor com a nova capacidade
+        cap /= 2;
+        String aux [] = new String [cap];
+        // Copia os elementos do vetor original para o novo vetor
+        for (int i = 0; i < qtde; i++) {
+            aux [i] = elementos[i];
+        }
+        // Atualiza o vetor de elementos para apontar para o novo vetor
+        elementos = aux;
+    }
+
+    // Método para obter uma cópia dos elementos do vetor
+    String[] getElementos() {
+        // Retorna uma cópia dos elementos até a quantidade atual de elementos
+        return Arrays.copyOf(elementos, qtde);
+    }
+
+    // Método para representar o vetor como uma string
+    public String toString() {
+        StringBuilder sb = new StringBuilder("");
+        sb.append("Qtde: ").append(qtde);
+        sb.append("\n");
+        sb.append("Cap: ").append(cap);
+        sb.append(qtde > 0 ? "\nElementos: " : "");
+        for (int i = 0; i < qtde; i++) {
+            sb.append(elementos[i]).append(" ");
+        }
+        return sb.toString();
+    }
+}

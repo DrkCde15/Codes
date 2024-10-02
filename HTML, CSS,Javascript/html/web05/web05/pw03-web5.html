@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web05</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .custom-heading {
+            color: red;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!--Caio Lopes -->
+    <div class="container mt-4">
+        <h1 class="custom-heading">Contato</h1>
+        <p>Seja bem-vindo, preencha o <strong>formulário</strong> abaixo para:</p>
+        <ul>
+            <li>Dúvidas</li>
+            <li>Sugestões</li>
+            <li>Críticas</li>
+            <li>Orçamentos</li>
+        </ul>
+        <p>Caso queira ver nossos produtos, clique <a href="produtos.pdf">aqui</a></p>
+        
+        <form>
+            <div class="form-group">
+                <label for="txtNome">Nome:</label>
+                <input type="text" class="form-control" id="txtNome" placeholder="Digite seu nome">
+            </div>
+
+            <div class="form-group">
+                <label for="txtEmail">Email:</label>
+                <input type="email" class="form-control" id="txtEmail" placeholder="Digite seu email">
+            </div>
+
+            <div class="form-group">
+                <label for="txtTelefone">Telefone:</label>
+                <input type="text" class="form-control" id="txtTelefone" placeholder="Digite seu telefone">
+            </div>
+
+            <div class="form-group">
+                <label for="assunto">Assunto:</label>
+                <select id="assunto" class="form-control">
+                    <option>Dúvidas</option>
+                    <option>Sugestões</option>
+                    <option>Críticas</option>
+                    <option>Orçamentos</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Deseja receber uma cópia deste e-mail:</label><br>
+                <div class="form-check">
+                    <input type="radio" id="Op1" name="receber" class="form-check-input">
+                    <label for="Op1" class="form-check-label">Sim</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" id="Op2" name="receber" class="form-check-input">
+                    <label for="Op2" class="form-check-label">Não</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="msg">Mensagem:</label>
+                <textarea id="msg" class="form-control" rows="4" placeholder="Digite sua mensagem"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

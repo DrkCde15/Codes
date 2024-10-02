@@ -1,0 +1,45 @@
+/* Estilização geral */
+body {
+    margin: 20px;
+    background-color: whitesmoke;
+}
+ 
+h1 {
+    color: red;
+    font-size: 45px;
+}
+
+form {
+    background-color: white;
+    padding: 15px;
+    border: 1px solid white;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+}
+ 
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    font-size: 14px;
+}
+
+button {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+ 
+button:hover {
+    background-color: rgb(0, 149, 255);
+}
