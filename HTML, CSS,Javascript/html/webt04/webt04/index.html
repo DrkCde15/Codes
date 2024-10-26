@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <title>Contato</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="https://fatecspgov.sharepoint.com/favicon.ico">
+</head>
+<body>
+    <h1>Contato</h1>
+   
+    <p>Seja bem-vindo, preencha o <strong>formulário</strong> abaixo para:</p>
+    <ul>
+        <li>dúvidas</li>
+        <li>sugestões</li>
+        <li>críticas</li>
+        <li>Orçamentos</li>
+    </ul>
+   
+    <p>Caso queira ver nossos produtos, clique <a href="#">aqui</a></p>
+   
+    <form>
+        nome:<input type="text" id="nome" required placeholder="digite seu nome"><br><br>
+       
+        email:<input type="email" id="email" required placeholder="digite seu email"><br><br>
+       
+        telefone:<input type="tel" id="telefone" required placeholder="digite seu telefone"><br><br>
+       
+        assunto:
+        <select id="assunto">
+            <option>Dúvidas</option>
+            <option>Sugestões</option>
+            <option>Críticas</option>
+            <option>Orçamentos</option>
+        </select><br><br>
+       
+        Deseja receber uma copia deste e-mail:
+        <input type="radio" id="sim" name="copia_email" value="sim">
+        <label for="sim">Sim</label>
+        <input type="radio" id="nao" name="copia_email" value="nao">
+        <label for="nao">Não</label><br><br>
+       
+        Mensagem:
+        <textarea id="msg" rows="5" cols="50" required placeholder="digite sua mensagem"></textarea><br><br>
+       
+        <button>Enviar</button>
+    </form>
+ 
+    <app-root></app-root>
+</body>
+</html>
+ 

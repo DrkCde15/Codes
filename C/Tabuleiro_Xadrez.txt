@@ -1,0 +1,98 @@
+/* Disciplina: Programaçao Estruturada e Modular
+Prof. Carlos Veríssimo                                    
+--------------------------------------------------------
+Objetivo do Programa: tabuleiro de xadrez: Xeque Pastor     
+Data - 04/09/2024                                                
+Autor: Julio Cesar Santana - RA 2040482312048*/
+
+
+#include <stdio.h>
+ 
+// Função para inicializar o tabuleiro
+void inicializarTabuleiro(char tabuleiro[8][8]) {
+    // Definindo as peças para as colunas a-h e linhas 1-8
+    const char* posicoes_iniciais[] = {
+        "TC", "CC", "BC", "QC", "RC", "BC", "CC", "TC",  // Linha 1 - Pretas
+        "PC", "PC", "PC", "PC", "PC", "PC", "PC", "PC",  // Linha 2 - Pretas
+        "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  // Linha 3 - Vazia
+        "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  // Linha 4 - Vazia
+        "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  // Linha 5 - Vazia
+        "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  // Linha 6 - Vazia
+        "PB", "PB", "PB", "PB", "PB", "PB", "PB", "PB",  // Linha 7 - Brancas
+        "TB", "CB", "BB", "QB", "RB", "BB", "CB", "TB"   // Linha 8 - Brancas
+    };
+ 
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            tabuleiro[i][j] = posicoes_iniciais[i][j];
+        }
+    }
+}
+ 
+// Função para imprimir o tabuleiro
+void imprimirTabuleiro(char tabuleiro[8][8]) {
+    printf("  a  b  c  d  e  f  g  h\n");
+    for (int i = 0; i < 8; i++) {
+        printf("%d ", 8 - i);
+        for (int j = 0; j < 8; j++) {
+            printf("%s ", tabuleiro[i][j]);
+        }
+        printf("%d\n", 8 - i);
+    }
+    printf("  a  b  c  d  e  f  g  h\n");
+}
+ 
+// Função para realizar uma jogada
+void moverPeca(char tabuleiro[8][8], int origemLinha, int origemColuna, int destinoLinha, int destinoColuna) {
+    tabuleiro[destinoLinha][destinoColuna] = tabuleiro[origemLinha][origemColuna];
+    tabuleiro[origemLinha][origemColuna] = "  ";
+}
+ 
+// Função principal
+int main() {
+    char tabuleiro[8][8];
+ 
+    // Inicializando o tabuleiro
+    inicializarTabuleiro(tabuleiro);
+ 
+    // Imprimindo o tabuleiro inicial
+    printf("Tabuleiro Inicial:\n");
+    imprimirTabuleiro(tabuleiro);
+ 
+    // Jogada #1: Brancas jogam Peão do Rei (e2 para e4)
+    moverPeca(tabuleiro, 6, 4, 4, 4);
+    printf("\nApós Jogada #1 (Peão do Rei para e4):\n");
+    imprimirTabuleiro(tabuleiro);
+ 
+    // Jogada #1: Pretas jogam Peão do Rei (e7 para e5)
+    moverPeca(tabuleiro, 1, 4, 3, 4);
+    printf("\nApós Jogada #2 (Peão do Rei para e5):\n");
+    imprimirTabuleiro(tabuleiro);
+ 
+    // Jogada #2: Brancas jogam Bispo do Rei (f1 para c4)
+    moverPeca(tabuleiro, 7, 5, 4, 2);
+    printf("\nApós Jogada #3 (Bispo do Rei para c4):\n");
+    imprimirTabuleiro(tabuleiro);
+ 
+    // Jogada #2: Pretas jogam Cavalo da Dama (b8 para c6)
+    moverPeca(tabuleiro, 0, 1, 2, 2);
+    printf("\nApós Jogada #4 (Cavalo da Dama para c6):\n");
+    imprimirTabuleiro(tabuleiro);
+ 
+    // Jogada #3: Brancas jogam Dama (d1 para h5)
+    moverPeca(tabuleiro, 7, 3, 3, 7);
+    printf("\nApós Jogada #5 (Dama para h5):\n");
+    imprimirTabuleiro(tabuleiro);
+ 
+    // Jogada #3: Pretas jogam Cavalo do Rei (g8 para f6)
+    moverPeca(tabuleiro, 0, 6, 2, 5);
+    printf("\nApós Jogada #6 (Cavalo do Rei para f6):\n");
+    imprimirTabuleiro(tabuleiro);
+ 
+    // Jogada #4: Xeque Mate - Brancas capturam Peão do Rei (Dxf7#)
+    moverPeca(tabuleiro, 3, 7, 1, 5);
+    printf("\nApós Jogada #7 (Dama captura Peão e Xeque Mate):\n");
+    imprimirTabuleiro(tabuleiro);
+ 
+    return 0;
+}

@@ -1,0 +1,57 @@
+body {
+    margin: 20px;
+}
+ 
+h1 {
+    color: #333;
+}
+ 
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+ 
+input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+ 
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+ 
+
+@media only screen and (orientation: portrait) {
+    body {
+        background-color: #f0f0f0;
+    }
+ 
+    h1 {
+        font-size: 24px;
+    }
+ 
+    form {
+        padding: 15px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+ 
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+        font-size: 16px;
+    }
+ 
+    button {
+        font-size: 16px;
+        width: 100%;
+    }
+}
