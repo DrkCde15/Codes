@@ -1,5 +1,5 @@
-# # Soma
-# print(1 + 2)
+# Soma
+print(1 + 2)
 
 # Subtração
 print(6 - 2)
