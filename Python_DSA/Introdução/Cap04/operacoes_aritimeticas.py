@@ -1,41 +1,41 @@
-# # Soma
-# print(1 + 2)
+# Soma
+print(1 + 2)
 
-# # Subtração
-# print(6 - 2)
+# Subtração
+print(6 - 2)
 
-# # Multiplicação
-# print( 7 * 2)
+# Multiplicação
+print( 7 * 2)
 
-# # Divisão
-# print( 18 / 2)
+# Divisão
+print( 18 / 2)
 
-# # Potência
-# print(10 ** 2)
+# Potência
+print(10 ** 2)
 
-# # Módulo
-# print(10 % 3)
+# Módulo
+print(10 % 3)
 
-# #converção
-# resultado_float = float(9)
-# resultado_int_6_0 = int(6.0)
-# resultado_int_6_5 = int(6.5)
+#converção
+resultado_float = float(9)
+resultado_int_6_0 = int(6.0)
+resultado_int_6_5 = int(6.5)
 
-# print("float(9):", resultado_float)
-# print("int(6.0):", resultado_int_6_0)
-# print("int(6.5):", resultado_int_6_5)
+print("float(9):", resultado_float)
+print("int(6.0):", resultado_int_6_0)
+print("int(6.5):", resultado_int_6_5)
 
-# #hexadecimal e binário
-# result_hex = hex(394)
-# result_hex2 = hex(456)
+#hexadecimal e binário
+result_hex = hex(394)
+result_hex2 = hex(456)
 
-# result_bin = bin(286)
-# result_bin2 = bin(357)
+result_bin = bin(286)
+result_bin2 = bin(357)
 
-# print("hex(394)", result_hex)
-# print("hex(456)", result_hex2)
-# print("bin(286)", result_bin)
-# print("bin(357)", result_bin)
+print("hex(394)", result_hex)
+print("hex(456)", result_hex2)
+print("bin(286)", result_bin)
+print("bin(357)", result_bin)
 
 #Funções abs, round e pow
 
