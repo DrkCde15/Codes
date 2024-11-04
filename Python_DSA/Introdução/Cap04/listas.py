@@ -110,3 +110,7 @@ print(citys)
 x = [10, 23, 12, 66, 100, -24]
 x.sort()
 print(x)
+
+list = ["Pedro", "Afonso", "Caio", "Lucas", "João"]
+list.sort()
+print(list)
