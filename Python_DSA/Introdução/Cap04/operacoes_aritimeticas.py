@@ -13,7 +13,7 @@ print( 18 / 2)
 # Potência
 print(10 ** 2)
 
-# Módulo
+# Módulo: resto da divisão
 print(10 % 3)
 
 #converção
