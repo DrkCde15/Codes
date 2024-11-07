@@ -7,7 +7,7 @@ public class Cesta {
     private int codigo;
     private Cliente cliente = new Cliente();
     private double total;
-    private List<Item> itens = new ArrayList<Item>();
+    private List<Item> itens = new ArrayList<>();
 
     public Cesta() {}
 

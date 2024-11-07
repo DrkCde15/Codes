@@ -38,6 +38,6 @@ public class CestaController {
 
     @GetMapping("/api/cestas")
     public List<Cesta> listar(){
-        return new ArrayList<Cesta>();
+        return new ArrayList<>();
     }
 }
