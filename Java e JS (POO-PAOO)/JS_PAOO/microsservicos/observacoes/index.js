@@ -1,6 +1,6 @@
 const express = require("express")
 const axios = require('axios')
-const uuid = require('uuid')
+const { v4: uuidv4 } = require('uuid');
 const app = express();
 
 //função middleware
@@ -10,7 +10,7 @@ const baseObservacoes = {}
 
 //POST /lembretes/id/observacoes
 app.post('/lembretes/:id/observacoes', async(req, res) => {
-    const idObs = uuid()
+    const idObs = uuidv4();
     const { texto } = req.body
     const observacoesDoLembrete = baseObservacoes[req.params.id] || []
     const observacao = {
