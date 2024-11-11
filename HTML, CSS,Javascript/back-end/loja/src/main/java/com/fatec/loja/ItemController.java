@@ -37,6 +37,6 @@ public class ItemController {
 
     @GetMapping("/api/itens")
     public List<Item> listar(){
-        return new ArrayList<Item>();
+        return new ArrayList<>();
     }
 }

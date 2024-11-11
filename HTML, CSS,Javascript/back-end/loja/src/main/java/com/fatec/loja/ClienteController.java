@@ -20,7 +20,12 @@ public class ClienteController {
 
     @PostMapping("/api/cliente")
     public String gravar(@RequestBody Cliente obj){
+        Optional<Cliente> existente = bd.findByEmail(obj.getEmail(), obj.getDocumento());
+        if (existente.isPresent()) {
+            return "O cliente com esses dados já existe";
+        }
         bd.save(obj);
+
         return "O cliente " + obj.getNome() + " foi salvo corretamente";
     }
 
