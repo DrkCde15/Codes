@@ -39,9 +39,37 @@
 #     print(i)
     
 
-#loop for aninhado
-lst_1 = [1, 2, 3]
-lst_2 = [4, 5, 6]
-for i in lst_1:
-    for j in lst_2:
-        print(i, j)
+# #loop for aninhado
+# lst_1 = [0, 1, 2, 3]
+# lst_2 = [1, 2, 3]
+# for i in lst_1:
+#     for j in lst_2:
+#         print('\n', i * j)
+
+#     print('-------')
+    
+#loop for aninhado com if
+# lst_1 = [0, 1, 2, 3]
+# lst_2 = [1, 2, 3]
+# for i in lst_1:
+#     for j in lst_2:
+#         if i == 3 and j == 3:
+#             print("Encontrei o número 3 nas duas listas")
+
+#loop for com condicionais
+# list_1 = [10, 73, 13, 22, 36, 42]
+# list_2 = [1, 2, 3, 4, 5, 6, 7, 8]
+# soma = 0
+
+# for list in [list_1, list_2]:
+#     for num in list:
+#         if num % 2 == 0:
+#             soma += num 
+
+# print(soma)
+
+# listas concatenadas
+list_1 = [10, 73, 13, 22, 36, 42]
+list_2 = [1, 2, 3, 4, 5, 6, 7, 8]
+list_3 = list_1 + list_2
+print(list_3)
