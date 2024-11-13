@@ -3,14 +3,9 @@ const express = require ('express')
 const app = express()
 app.use(express.json())
 
-let id = 2
+let id = 1
 
-const baseLembretes = {
-    1: {
-        id: 1,
-        texto: 'Fazer cafe'
-    }
-}
+const baseLembretes = {}
 /*
     {
         1:{
@@ -40,8 +35,13 @@ app.post('/lembretes', async function(req, res){
         payload: lembrete
     })
     app.post('/eventos', (req, res) => {
-        const evento = req.body
-        console.log(evento)
+
+        try{
+            const evento = req.body
+            funcoes[evento.type](evento.payload)
+            console.log(evento)
+        }
+        catch(e){}
         res.end()
     })
 

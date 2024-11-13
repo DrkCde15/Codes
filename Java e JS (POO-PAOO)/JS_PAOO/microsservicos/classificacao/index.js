@@ -19,9 +19,13 @@ const funçoes = {
 }
 
 app.post('/eventos', (req, res) => {
-    const eventos = req.body
-    funçoes[eventos.type](eventos.payload)
-    res.status(200).end()
+    try{
+        const evento = req.body
+        funcoes[evento.type](evento.payload)
+        console.log(evento)
+    }
+    catch(e){}
+    res.end()
 })
 
 const port = 7000
