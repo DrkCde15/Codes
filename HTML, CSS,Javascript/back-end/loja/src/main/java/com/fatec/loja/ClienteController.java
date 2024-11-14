@@ -15,6 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ClienteController {
+    private boolean camposVazios(Cliente obj) {
+        return obj.getNome().isEmpty() || obj.getEmail().isEmpty() || obj.getSenha().isEmpty() || obj.getTelefone().isEmpty() || 
+            obj.getDocumento().isEmpty() || obj.getBairro().isEmpty() || obj.getLogradouro().isEmpty() || obj.getCep().isEmpty() || 
+            obj.getCidade().isEmpty() || obj.getUf().isEmpty() || obj.getConfirmarSenha().isEmpty();
+    }
+
+
     @Autowired
     ClienteRepository bd;
 

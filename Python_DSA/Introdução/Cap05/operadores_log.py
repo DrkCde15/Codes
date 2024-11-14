@@ -19,6 +19,15 @@ if idade >17 and nome == "João":
 else:
     print("Não pode dirigir")
 
+nome = input("Digite seu nome: ")
+grn = input("Digite sua sexualidade: ")
+if grn != "hetero":
+    print("Voce eh gay!!")
+else:
+    print("Voce nao eh gay!!")
+
+print ("Seu nome eh " + nome + " e voce eh gay")
+
 #operador logico or
 nome = "João"
 idade = 18
