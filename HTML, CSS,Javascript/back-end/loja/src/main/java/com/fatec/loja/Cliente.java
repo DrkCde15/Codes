@@ -82,8 +82,4 @@ public class Cliente {
     public void setUf(String uf) {
         this.uf = uf;
     }
-
-    Object getBairro() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

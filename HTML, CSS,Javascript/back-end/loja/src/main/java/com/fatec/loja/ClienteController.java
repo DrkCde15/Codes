@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClienteController {
     private boolean camposVazios(Cliente obj) {
         return obj.getNome().isEmpty() || obj.getEmail().isEmpty() || obj.getSenha().isEmpty() || obj.getTelefone().isEmpty() || 
-            obj.getDocumento().isEmpty() || obj.getBairro().isEmpty() || obj.getLogradouro().isEmpty() || obj.getCep().isEmpty() || 
-            obj.getCidade().isEmpty() || obj.getUf().isEmpty() || obj.getConfirmarSenha().isEmpty();
+            obj.getDocumento().isEmpty() || obj.getLogradouro().isEmpty()|| obj.getCep().isEmpty() || 
+            obj.getCidade().isEmpty() || obj.getUf().isEmpty();
     }
 
 
@@ -27,6 +27,9 @@ public class ClienteController {
 
     @PostMapping("/api/cliente")
     public String gravar(@RequestBody Cliente obj){
+        if (camposVazios(obj)) {
+            return "Todos os campos devem ser preenchidos";
+        }
         Optional<Cliente> existente = bd.findByEmail(obj.getEmail(), obj.getDocumento());
         if (existente.isPresent()) {
             return "O cliente com esses dados já existe";
@@ -38,6 +41,13 @@ public class ClienteController {
 
     @PutMapping("/api/cliente")
     public String alterar(@RequestBody Cliente obj){
+        if (camposVazios(obj)) {
+            return "Todos os campos devem ser preenchidos";
+        }
+        Optional<Cliente> existente = bd.findById(obj.getCodigo());
+        if (!existente.isPresent()) {
+            return "O cliente com esses dados não existe";
+        }
         bd.save(obj);
         return "O cliente " + obj.getNome() + " foi alterado corretamente";
     }
