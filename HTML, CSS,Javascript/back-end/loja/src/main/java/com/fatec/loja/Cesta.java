@@ -1,24 +1,28 @@
 package com.fatec.loja;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Transient;
+@Entity
 public class Cesta {
+    @Id
     private int codigo;
-    private Cliente cliente = new Cliente();
-    private double total;
-    private List<Item> itens = new ArrayList<>();
+    @Transient
+    private Cliente cliente;
+    private int codigoCliente;
 
-    public Cesta() {}
-
-    public Cesta(int codigo, Cliente cliente, double total, List<Item> itens) {
-        this.codigo = codigo;
-        this.cliente = cliente;
-        this.total = total;
-        this.itens = itens;
-    }
-
+    public Cesta(int i, Cliente cliente2, double d, List<Item> itens2) {
         
+    }
+    public int getCodigoCliente() {
+        return codigoCliente;
+    }
+    private double total = 0;
+    @OneToMany(mappedBy="cesta")
+    private Set<Item> itens;
     public int getCodigo() {
         return codigo;
     }
@@ -30,6 +34,7 @@ public class Cesta {
     }
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+        this.codigoCliente = cliente.getCodigo();
     }
     public double getTotal() {
         return total;
@@ -37,12 +42,10 @@ public class Cesta {
     public void setTotal(double total) {
         this.total = total;
     }
-    public List<Item> getItens() {
+    public Set<Item> getItens() {
         return itens;
     }
-    public void setItens(List<Item> itens) {
+    public void setItens(Set<Item> itens) {
         this.itens = itens;
-    }
-
-    
+    }   
 }

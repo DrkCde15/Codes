@@ -17,7 +17,4 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     @Query (value = "SELECT * FROM cliente WHERE email=?1 OR documento=?2", nativeQuery = true)
     Optional<Cliente> findByEmail(String email, String documento);
-
-    
-
 }
