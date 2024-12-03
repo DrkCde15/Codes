@@ -5,7 +5,7 @@ for i in tp:
 
     
 #for com lista de strings
-tp = ["Afonso", "Alice", "Caio"]
+tp = ["Daniele", "Larissa", "Mayara"]
 for i in tp:
     print(i)
     
@@ -73,3 +73,47 @@ list_1 = [10, 73, 13, 22, 36, 42]
 list_2 = [1, 2, 3, 4, 5, 6, 7, 8]
 list_3 = list_1 + list_2
 print(list_3)
+
+
+#While
+valor = 0
+while valor < 10:
+    print(valor)
+    valor += 1
+
+#while com else
+valor = 0
+while valor < 20:
+    print("valor x é: ", valor)
+    print("valor ainda eh menor que 20")
+    valor += 1
+else:
+    print("fim do loop")
+    
+    
+#pass, break e continue com while
+valor = 0
+while valor < 10:
+    if valor == 5:
+        break
+    else:
+        pass
+    print(valor)
+    valor += 1
+    
+for letra in "Linux zzz eh melhor":
+    if letra == "z":
+        continue
+    print(letra)
+    
+
+
+#numeros primos de 1 a 100 com for e while
+num = 2
+while num < 100:
+    for i in range(2, num):
+        if num % i == 0:
+            break
+    else:
+        print(num)
+    num += 1
