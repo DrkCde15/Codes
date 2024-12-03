@@ -2,14 +2,14 @@
 #Operador logico or = retorna True se pelo menos uma das condições forem verdadeiras
 #Operador logico not = inverte o valor da condição
 
-# print(input("Informe seu nome: "))  # Solicita o nome do usuário
+print(input("Informe seu nome: "))  # Solicita o nome do usuário
 
-# idade = int(input("Informe sua idade: "))  # Solicita a idade do usuário
+idade = int(input("Informe sua idade: "))  # Solicita a idade do usuário
 
-# if idade > 17:  # Se a idade for maior que 17
-#     print("Pode dirigir")  # Imprime "Pode dirigir"
-# else:  # Senão
-#     print("Não pode dirigir")  # Imprime "Não pode dirigir"
+if idade > 17:  # Se a idade for maior que 17
+    print("Pode dirigir")  # Imprime "Pode dirigir"
+else:  # Senão
+    print("Não pode dirigir")  # Imprime "Não pode dirigir"
     
 #Operador logico and
 nome = "João"
