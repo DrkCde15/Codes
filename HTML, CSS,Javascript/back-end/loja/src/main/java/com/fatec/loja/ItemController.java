@@ -19,7 +19,7 @@ public class ItemController {
     }
 
     @PutMapping("/api/item")
-    public String alterer(@RequestBody Item obj){
+    public String alterar(@RequestBody Item obj){
         return "O item " + obj.getProduto().getNome() + " foi alterado corretamente";
     }
 

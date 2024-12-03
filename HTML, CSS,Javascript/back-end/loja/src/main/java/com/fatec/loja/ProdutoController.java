@@ -56,12 +56,16 @@ public class ProdutoController {
 
     @GetMapping("/api/produto/vitrine")
     public List<Produto> listarVitrine() {
-        return bd.listarVitrine();
+        List<Produto> produtos = bd.listarVitrine();
+        System.out.println(produtos);
+        return produtos;
     }
+    
 
-    @GetMapping("/api/produto/busca/{palavraChave}")
-    public List<Produto> fazerBusca(@PathVariable("palavraChave")String palavraChave) {
-        return bd.fazerBusca(palavraChave);
+    @GetMapping("/api/produto/busca/{keywords}")
+    public List<Produto> fazerBusca(@PathVariable String keywords) {
+        return bd.fazerBusca(keywords);
+
     }
    
 }   

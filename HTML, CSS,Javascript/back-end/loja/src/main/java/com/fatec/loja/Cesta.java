@@ -21,6 +21,7 @@ public class Cesta {
         return codigoCliente;
     }
     private double total = 0;
+
     @OneToMany(mappedBy="cesta")
     private Set<Item> itens;
     public int getCodigo() {

@@ -13,5 +13,5 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
     List<Produto> listarVitrine();
     
     @Query(value = "SELECT * FROM produto WHERE keywords LIKE ?1 order by nome", nativeQuery = true)
-    List<Produto> fazerBusca(String palavraChave);
+    List<Produto> fazerBusca(String keywords);
 }

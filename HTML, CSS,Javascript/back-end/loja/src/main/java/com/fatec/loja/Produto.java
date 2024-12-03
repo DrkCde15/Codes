@@ -1,5 +1,7 @@
 package com.fatec.loja;
 
+import java.util.Optional;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -60,5 +62,10 @@ public class Produto {
     }
     public void setDestaque(int destaque) {
         this.destaque = destaque;
+    }
+
+    public static Optional<Produto> stream() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'stream'");
     }
 }
