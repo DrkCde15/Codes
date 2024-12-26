@@ -10,11 +10,11 @@ print(int(3.4))#inteiros
 print(str(13))#string
 print(float(13))#float
 
-# idd = int(input("Digite sua idade: "))
-# if idd >= 18:
-#     print("Voce eh maior de idade pode dirigir")
-# else:
-#     print("Voce eh menor de idade não pode dirigir")
+idd = int(input("Digite sua idade: "))
+if idd >= 18:
+    print("Voce eh maior de idade pode dirigir")
+else:
+    print("Voce eh menor de idade não pode dirigir")
 
 
 print(int("12"))
