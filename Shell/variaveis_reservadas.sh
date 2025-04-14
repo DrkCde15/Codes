@@ -13,7 +13,7 @@ echo "Todos os parametros: $*"
 echo "Quantos parametros: $#"
 # Mostra o número total de parâmetros passados ao script
 
-echo "Ultimo parametro: $?"
+echo "Ultimo parametro: $!?"
 # Mostra o código de saída do último comando executado 
 
 echo "PID: $$"
