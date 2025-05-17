@@ -40,3 +40,7 @@ def varInfo(argv1, *vartuple):
     for i in vartuple:
         print ("O parametro passado foi: ", i)
 varInfo("Daniele", "Larissa", "Mayara")
+
+def diga_ola(nome):
+    print("Olá {}.".format(nome))
+diga_ola("May")
