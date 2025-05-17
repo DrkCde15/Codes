@@ -1,0 +1,2 @@
+Ola! Este eh um arquivo gerado com Python.
+Escreva oque voce quiser.
