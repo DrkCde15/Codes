@@ -11,7 +11,7 @@ int main(){
     return 0;
 }
 
-//& = referencia
+//& = operador de referencia
 
 void zum (int a){
     a = a + 2;
