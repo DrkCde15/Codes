@@ -16,3 +16,4 @@ void preenche_vetor (t_vetor *);
 void libera_memoria (t_vetor *);
 void selection_sort (t_vetor *);
 void bubble_sort (t_vetor *);
+void insertion_sort (t_vetor *);
