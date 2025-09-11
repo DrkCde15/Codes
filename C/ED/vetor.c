@@ -110,7 +110,6 @@ void bubble_sort (t_vetor *vetor){
                 vetor->v[j] = aux;
             }
 }
-
 void insertion_sort (t_vetor *vetor){
     for (int i=1; i<vetor->capacidade; i++) {
         int aux = vetor->v[i];
