@@ -4,11 +4,15 @@ t_pilha constroi_pilha(int capacidade){
     t_pilha p;
     p.capacidade = capacidade;
     p.topo = 0;
-    p.v = (int *) malloc (capacidade * sizeof(int));
+    p.v = (char *) malloc (capacidade*1);
     return p;
 }
 
-int push(int i, t_pilha *p){
+void exibe_pos_ele_topo (t_pilha *p){
+    printf("posicao do topo: %c\n elemento: %c\n", p->topo-1, p->v[p->topo-1]);
+}
+
+int push(char i, t_pilha *p){
     if(!esta_cheia(p)){
         p->v[p->topo] = i;
         p->topo++;
@@ -17,7 +21,7 @@ int push(int i, t_pilha *p){
     return FRACASSO;
 }
 
-int pop(t_pilha *p, int *desempilhado){
+int pop(t_pilha *p, char *desempilhado){
     if(!esta_cheia(p)){
         *desempilhado = p->v[--p->topo];
         return SUCESSO;
@@ -46,7 +50,7 @@ char * string_pilha(t_pilha *p){
         sprintf(s, "pilha vazia\n");
     else{
         for(int i=p->topo-1; i>=0; i--){
-            sprintf(s_aux, "%d\n", p->v[i]);
+            sprintf(s_aux, "%c\n", p->v[i]);
             strcat(s, s_aux);
         }
         strcat(s, "-------------------\n");

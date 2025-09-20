@@ -1,0 +1,113 @@
+EX 1:
+
+-5
+
+- empilha 3
+
+-3
+
+-5
+
+- desempilha
+
+-5
+
+- empilha 2
+
+-2
+-5
+
+- empilha 8
+
+-8
+-2
+-5
+
+- desempilha
+
+-2
+-5
+
+- desempilha
+
+-5
+
+- empilha 9
+
+-9
+-5
+
+- empilha 1
+
+-1
+-9
+-5
+
+- desempilha
+
+-9
+-5
+
+- empilha 7
+
+-7
+-9
+-5
+
+- empilha 6
+
+-6
+-7
+-9
+-5
+
+- desempilha
+
+-7
+-9
+-5
+
+- empilha 10
+
+-10
+-7
+-9
+-5
+
+- desempilha
+
+-7
+-9
+-5
+
+- empilha 4
+
+-4
+-7
+-9
+-5
+
+- desempilha
+
+-7
+-9
+-5
+
+- desempilha
+
+-9
+-5
+
+EX 2:
+
+p1              p2              aux
+                2
+                4
+                3
+                1               
+
+push(p2, pop(p1))
+push(aux, pop(p1))
+push(p2, pop(p1))
+push(p2, pop(p1))
+push(aux, pop(p1))

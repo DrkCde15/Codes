@@ -4,15 +4,15 @@
 #define SUCESSO 1
 #define FRACASSO 0
 typedef struct{
-    int *v;
+    char *v;
     int topo;
     int capacidade;
 }t_pilha;
 int esta_cheia(t_pilha *);
 int esta_vazia(t_pilha *);
-int push(int, t_pilha *);
-int pop(t_pilha *, int *);
+int push(char, t_pilha *);
+int pop(t_pilha *, char *);
 int tamannho(t_pilha *);
-char * string_pilha(t_pilha *);
 t_pilha constroi_pilha(int);
-void converte_binario(int);
+char * string_pilha(t_pilha *);
+void exibe_pos_ele_topo (t_pilha *);

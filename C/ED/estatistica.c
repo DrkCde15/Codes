@@ -4,7 +4,7 @@
 
 int main(){
     srand(time(0));
-    int n = 1000000;
+    int n = 1000000000;
     float media_total = 0.0;
     for(int j=1; j<=100; j++){
         float resultado = 0.0;
