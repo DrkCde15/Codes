@@ -13,24 +13,24 @@ int main () {
         selection_sort(&vetor);
         long int fim = time(0);
         //exibe_vetor(&vetor);
-        printf("Selecton:\ntamanho: %d, tempo: %d\n", capacidade, fim-ini);
+        printf ("Selecton:\ntamanho: %d, tempo: %d\n", capacidade, fim-ini);
         preenche_vetor(&vetor);
         //exibe_vetor(&vetor);
         ini = time(0);
         bubble_sort(&vetor);
         fim = time(0);
         //exibe_vetor(&vetor);
-        printf("Bubble:\ntamanho: %d, tempo: %d\n", capacidade, fim-ini);
+        printf ("Bubble:\ntamanho: %d, tempo: %d\n", capacidade, fim-ini);
         preenche_vetor(&vetor);
         //exibe_vetor(&vetor);
         ini = time(0);
         insertion_sort(&vetor);
         fim = time(0);
         //exibe_vetor(&vetor);
-        printf("Insertion:\ntamanho: %d, tempo: %d\n", capacidade, fim-ini);
+        printf ("Insertion:\ntamanho: %d, tempo: %d\n", capacidade, fim-ini);
         libera_memoria(&vetor);
-        printf("\nqual o novo tamanho do vetor? ");
-        scanf("%d", &capacidade);
+        printf ("\nqual o novo tamanho do vetor? ");
+        scanf ("%d", &capacidade);
     }
     return 0;
 }
