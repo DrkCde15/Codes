@@ -1,9 +1,10 @@
 // rafce
 import React from 'react'
 
-const Cartao = props => {
+const Cartao = (props) => {
   return (
-    <div className='card'>
+    // .card>(.card-header.text-muted+.card-body)
+    <div className="card">
       <div className="card-header text-muted">
         {props.cabecalho}
       </div>
@@ -11,8 +12,8 @@ const Cartao = props => {
         {props.children}
       </div>
     </div>
+
   )
 }
 
 export default Cartao
-
