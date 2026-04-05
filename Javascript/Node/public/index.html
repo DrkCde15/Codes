@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD de selecoes</title>
+  </head>
+  <body style="font-family: Arial, sans-serif; max-width: 560px; margin: 40px auto;">
+    <h1>CRUD de selecoes</h1>
+
+    <h2>POST /selecoes</h2>
+    <form id="form-post">
+      <label for="id">ID</label><br />
+      <input id="id" name="id" type="number" required /><br /><br />
+
+      <label for="nome">Nome</label><br />
+      <input id="nome" name="nome" type="text" required /><br /><br />
+
+      <label for="grupo">Grupo</label><br />
+      <input id="grupo" name="grupo" type="text" required maxlength="1" /><br /><br />
+
+      <button type="submit">Enviar POST</button>
+    </form>
+
+    <hr />
+
+    <h2>GET /selecoes</h2>
+    <button id="btn-get" type="button">Executar GET</button>
+
+    <hr />
+
+    <h2>PUT /selecoes/:id</h2>
+    <form id="form-put">
+      <label for="put-id">ID da selecao</label><br />
+      <input id="put-id" name="put-id" type="number" required /><br /><br />
+
+      <label for="put-nome">Novo nome</label><br />
+      <input id="put-nome" name="put-nome" type="text" required /><br /><br />
+
+      <label for="put-grupo">Novo grupo</label><br />
+      <input id="put-grupo" name="put-grupo" type="text" required maxlength="1" /><br /><br />
+
+      <button type="submit">Executar PUT</button>
+    </form>
+
+    <hr />
+
+    <h2>DELETE /selecoes/:id</h2>
+    <form id="form-delete">
+      <label for="delete-id">ID da selecao</label><br />
+      <input id="delete-id" name="delete-id" type="number" required /><br /><br />
+
+      <button type="submit">Executar DELETE</button>
+    </form>
+
+    <p id="resultado" style="margin-top: 16px;"></p>
+    <pre id="saida-json" style="white-space: pre-wrap; word-break: break-word;"></pre>
+
+    <script>
+      const formPost = document.getElementById('form-post')
+      const btnGet = document.getElementById('btn-get')
+      const formPut = document.getElementById('form-put')
+      const formDelete = document.getElementById('form-delete')
+      const resultado = document.getElementById('resultado')
+      const saidaJson = document.getElementById('saida-json')
+
+      function mostrarResultado(response, texto, json) {
+        resultado.textContent = `${response.status} ${response.statusText} - ${texto}`
+        resultado.style.color = response.ok ? 'green' : 'red'
+
+        if (json !== null) {
+          saidaJson.textContent = JSON.stringify(json, null, 2)
+        } else {
+          saidaJson.textContent = ''
+        }
+      }
+
+      async function lerResposta(response) {
+        const conteudo = response.headers.get('content-type') || ''
+
+        if (conteudo.includes('application/json')) {
+          const json = await response.json()
+          return { texto: 'Resposta em JSON', json }
+        }
+
+        const texto = await response.text()
+        return { texto, json: null }
+      }
+
+      async function executarRequisicao(url, opcoes) {
+        try {
+          const response = await fetch(url, opcoes)
+          const { texto, json } = await lerResposta(response)
+          mostrarResultado(response, texto, json)
+        } catch (error) {
+          resultado.textContent = 'Erro ao enviar requisicao'
+          resultado.style.color = 'red'
+          saidaJson.textContent = ''
+        }
+      }
+
+      formPost.addEventListener('submit', async (event) => {
+        event.preventDefault()
+
+        const dados = {
+          id: Number(formPost.id.value),
+          nome: formPost.nome.value,
+          grupo: formPost.grupo.value.toUpperCase(),
+        }
+
+        executarRequisicao('/selecoes', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dados),
+        })
+      })
+
+      btnGet.addEventListener('click', () => {
+        executarRequisicao('/selecoes', { method: 'GET' })
+      })
+
+      formPut.addEventListener('submit', (event) => {
+        event.preventDefault()
+
+        const id = Number(document.getElementById('put-id').value)
+        const dados = {
+          nome: document.getElementById('put-nome').value,
+          grupo: document.getElementById('put-grupo').value.toUpperCase(),
+        }
+
+        executarRequisicao(`/selecoes/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dados),
+        })
+      })
+
+      formDelete.addEventListener('submit', (event) => {
+        event.preventDefault()
+
+        const id = Number(document.getElementById('delete-id').value)
+        executarRequisicao(`/selecoes/${id}`, { method: 'DELETE' })
+      })
+    </script>
+  </body>
+</html>

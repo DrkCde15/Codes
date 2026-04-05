@@ -2,8 +2,9 @@
   "name": "node",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev":"nodemon src/app.js",
+    "dev":"nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
