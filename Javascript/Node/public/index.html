@@ -5,40 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CRUD de selecoes</title>
   </head>
-  <body style="font-family: Arial, sans-serif; max-width: 560px; margin: 40px auto;">
+  <body style="font-family: Arial, sans-serif; max-width: 620px; margin: 40px auto;">
     <h1>CRUD de selecoes</h1>
 
     <h2>POST /selecoes</h2>
     <form id="form-post">
       <label for="id">ID</label><br />
-      <input id="id" name="id" type="number" required /><br /><br />
+      <input id="id" name="id" type="number" min="1" required /><br /><br />
 
       <label for="nome">Nome</label><br />
       <input id="nome" name="nome" type="text" required /><br /><br />
 
-      <label for="grupo">Grupo</label><br />
-      <input id="grupo" name="grupo" type="text" required maxlength="1" /><br /><br />
+      <label for="grupo">Grupo (1 letra)</label><br />
+      <input id="grupo" name="grupo" type="text" maxlength="1" required /><br /><br />
 
-      <button type="submit">Enviar POST</button>
+      <button type="submit">Executar POST</button>
     </form>
 
     <hr />
 
     <h2>GET /selecoes</h2>
-    <button id="btn-get" type="button">Executar GET</button>
+    <button id="btn-get-todos" type="button">Executar GET (todos)</button>
+
+    <h2>GET /selecoes/:id</h2>
+    <form id="form-get-por-id">
+      <label for="get-id">ID da selecao</label><br />
+      <input id="get-id" name="get-id" type="number" min="1" required /><br /><br />
+      <button type="submit">Executar GET por ID</button>
+    </form>
 
     <hr />
 
     <h2>PUT /selecoes/:id</h2>
     <form id="form-put">
       <label for="put-id">ID da selecao</label><br />
-      <input id="put-id" name="put-id" type="number" required /><br /><br />
+      <input id="put-id" name="put-id" type="number" min="1" required /><br /><br />
 
       <label for="put-nome">Novo nome</label><br />
       <input id="put-nome" name="put-nome" type="text" required /><br /><br />
 
-      <label for="put-grupo">Novo grupo</label><br />
-      <input id="put-grupo" name="put-grupo" type="text" required maxlength="1" /><br /><br />
+      <label for="put-grupo">Novo grupo (1 letra)</label><br />
+      <input id="put-grupo" name="put-grupo" type="text" maxlength="1" required /><br /><br />
 
       <button type="submit">Executar PUT</button>
     </form>
@@ -48,7 +55,7 @@
     <h2>DELETE /selecoes/:id</h2>
     <form id="form-delete">
       <label for="delete-id">ID da selecao</label><br />
-      <input id="delete-id" name="delete-id" type="number" required /><br /><br />
+      <input id="delete-id" name="delete-id" type="number" min="1" required /><br /><br />
 
       <button type="submit">Executar DELETE</button>
     </form>
@@ -58,27 +65,29 @@
 
     <script>
       const formPost = document.getElementById('form-post')
-      const btnGet = document.getElementById('btn-get')
+      const btnGetTodos = document.getElementById('btn-get-todos')
+      const formGetPorId = document.getElementById('form-get-por-id')
       const formPut = document.getElementById('form-put')
       const formDelete = document.getElementById('form-delete')
       const resultado = document.getElementById('resultado')
       const saidaJson = document.getElementById('saida-json')
 
+      function mostrarErroGenerico() {
+        resultado.textContent = 'Erro ao enviar requisicao'
+        resultado.style.color = 'red'
+        saidaJson.textContent = ''
+      }
+
       function mostrarResultado(response, texto, json) {
         resultado.textContent = `${response.status} ${response.statusText} - ${texto}`
         resultado.style.color = response.ok ? 'green' : 'red'
-
-        if (json !== null) {
-          saidaJson.textContent = JSON.stringify(json, null, 2)
-        } else {
-          saidaJson.textContent = ''
-        }
+        saidaJson.textContent = json ? JSON.stringify(json, null, 2) : ''
       }
 
       async function lerResposta(response) {
-        const conteudo = response.headers.get('content-type') || ''
+        const contentType = response.headers.get('content-type') || ''
 
-        if (conteudo.includes('application/json')) {
+        if (contentType.includes('application/json')) {
           const json = await response.json()
           return { texto: 'Resposta em JSON', json }
         }
@@ -93,19 +102,17 @@
           const { texto, json } = await lerResposta(response)
           mostrarResultado(response, texto, json)
         } catch (error) {
-          resultado.textContent = 'Erro ao enviar requisicao'
-          resultado.style.color = 'red'
-          saidaJson.textContent = ''
+          mostrarErroGenerico()
         }
       }
 
-      formPost.addEventListener('submit', async (event) => {
+      formPost.addEventListener('submit', (event) => {
         event.preventDefault()
 
         const dados = {
           id: Number(formPost.id.value),
-          nome: formPost.nome.value,
-          grupo: formPost.grupo.value.toUpperCase(),
+          nome: formPost.nome.value.trim(),
+          grupo: formPost.grupo.value.trim().toUpperCase(),
         }
 
         executarRequisicao('/selecoes', {
@@ -115,8 +122,14 @@
         })
       })
 
-      btnGet.addEventListener('click', () => {
+      btnGetTodos.addEventListener('click', () => {
         executarRequisicao('/selecoes', { method: 'GET' })
+      })
+
+      formGetPorId.addEventListener('submit', (event) => {
+        event.preventDefault()
+        const id = Number(document.getElementById('get-id').value)
+        executarRequisicao(`/selecoes/${id}`, { method: 'GET' })
       })
 
       formPut.addEventListener('submit', (event) => {
@@ -124,8 +137,8 @@
 
         const id = Number(document.getElementById('put-id').value)
         const dados = {
-          nome: document.getElementById('put-nome').value,
-          grupo: document.getElementById('put-grupo').value.toUpperCase(),
+          nome: document.getElementById('put-nome').value.trim(),
+          grupo: document.getElementById('put-grupo').value.trim().toUpperCase(),
         }
 
         executarRequisicao(`/selecoes/${id}`, {
@@ -137,7 +150,6 @@
 
       formDelete.addEventListener('submit', (event) => {
         event.preventDefault()
-
         const id = Number(document.getElementById('delete-id').value)
         executarRequisicao(`/selecoes/${id}`, { method: 'DELETE' })
       })
