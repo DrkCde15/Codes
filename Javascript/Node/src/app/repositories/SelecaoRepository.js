@@ -1,4 +1,4 @@
-import connection from "../../../infra/data_base.js";
+import connection from "../database/data_base.js";
 
 class SelecaoRepository {
 
