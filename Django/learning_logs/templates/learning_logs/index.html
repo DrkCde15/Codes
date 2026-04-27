@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Logs</title>
+    <style>
+        :root {
+            --bg-top: #f8fbff;
+            --bg-bottom: #f5efe3;
+            --surface: #ffffff;
+            --surface-soft: #f2f6ff;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --accent: #0d9488;
+            --accent-strong: #0f766e;
+            --border: #dbe4f0;
+            --shadow: 0 16px 36px rgba(13, 148, 136, 0.16);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+            color: var(--text-main);
+            background:
+                radial-gradient(circle at 10% 20%, rgba(13, 148, 136, 0.14), transparent 40%),
+                radial-gradient(circle at 90% 10%, rgba(59, 130, 246, 0.12), transparent 42%),
+                linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.25rem;
+        }
+
+        .home-panel {
+            width: min(920px, 100%);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .hero {
+            padding: 3rem 2rem 2.25rem;
+            background: linear-gradient(120deg, rgba(13, 148, 136, 0.1), rgba(59, 130, 246, 0.08));
+            border-bottom: 1px solid var(--border);
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--accent-strong);
+            background: rgba(13, 148, 136, 0.14);
+            border: 1px solid rgba(13, 148, 136, 0.28);
+            border-radius: 999px;
+            padding: 0.38rem 0.72rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(1.9rem, 5vw, 3rem);
+            line-height: 1.1;
+            letter-spacing: 0.01em;
+        }
+
+        .hero p {
+            margin: 1rem 0 0;
+            max-width: 65ch;
+            color: var(--text-muted);
+            font-size: clamp(1rem, 2.6vw, 1.16rem);
+            line-height: 1.75;
+        }
+
+        .actions {
+            margin-top: 1.4rem;
+        }
+
+        .btn-admin {
+            display: inline-block;
+            text-decoration: none;
+            background: var(--accent);
+            color: #ffffff;
+            border: 1px solid var(--accent-strong);
+            border-radius: 12px;
+            padding: 0.72rem 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+            box-shadow: 0 8px 18px rgba(13, 148, 136, 0.28);
+        }
+
+        .btn-admin:hover {
+            background: var(--accent-strong);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(15, 118, 110, 0.3);
+        }
+
+        .btn-admin:active {
+            transform: translateY(0);
+        }
+
+        .content {
+            padding: 1.8rem 2rem 2.3rem;
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .feature {
+            background: var(--surface-soft);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1rem;
+        }
+
+        .feature h2 {
+            margin: 0 0 0.55rem;
+            font-size: 1.02rem;
+        }
+
+        .feature p {
+            margin: 0;
+            color: var(--text-muted);
+            line-height: 1.55;
+            font-size: 0.95rem;
+        }
+
+        .footer-note {
+            padding: 0 2rem 1.8rem;
+            color: var(--text-muted);
+            font-size: 0.94rem;
+        }
+
+        @media (max-width: 860px) {
+            .content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem 0.75rem;
+            }
+
+            .hero {
+                padding: 2rem 1.2rem 1.5rem;
+            }
+
+            .content {
+                padding: 1.2rem;
+                grid-template-columns: 1fr;
+            }
+
+            .footer-note {
+                padding: 0 1.2rem 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="home-panel">
+        <section class="hero">
+            <span class="badge">Study with clarity</span>
+            <h1>Learning Logs</h1>
+            <p>
+                Keep your learning journey organized in one place.
+                Create topics, add entries, and track your progress over time with a clean and focused workflow.
+            </p>
+            <div class="actions">
+                <a class="btn-admin" href="{% url 'admin:index' %}">Go to Admin</a>
+            </div>
+        </section>
+
+        <section class="content">
+            <article class="feature">
+                <h2>Organize by topic</h2>
+                <p>Group your notes into topics so each subject has its own space and timeline.</p>
+            </article>
+            <article class="feature">
+                <h2>Track progress</h2>
+                <p>Add new entries as you learn and see how your understanding evolves day by day.</p>
+            </article>
+            <article class="feature">
+                <h2>Stay motivated</h2>
+                <p>Review your learning history and celebrate the consistency behind every improvement.</p>
+            </article>
+        </section>
+
+        <p class="footer-note">Built with Django to make continuous learning simple and practical.</p>
+    </main>
+</body>
+</html>
